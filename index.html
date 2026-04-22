@@ -26,14 +26,14 @@
         /* ========== 字体 ========== */
         @font-face {
             font-family: 'LanaPixel';
-            src:url('https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/fonts/LanaPixel.ttf') format('truetype');
+            src:url('./fonts/LanaPixel.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
         }
         @font-face {
             font-family: 'NotoSansSC';
-            src: url('https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/fonts/NotoSansSC-Bold.ttf') format('truetype');
+            src: url('./fonts/NotoSansSC-Bold.ttf') format('truetype');
             font-weight: bold;
             font-style: normal;
             font-display: swap;
@@ -262,10 +262,10 @@
 </head>
 <body>
     <div class="home-container" id="homeContainer">
-        <div class="deco-wrapper top"><div class="deco-inner"><img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/top-deco.png" alt="" class="deco-img"></div></div>
-        <div class="deco-wrapper bottom"><div class="deco-inner"><img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/bottom-deco.png" alt="" class="deco-img"><img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/animation.gif" alt="" class="screen-gif" id="screenGif"></div></div>
+        <div class="deco-wrapper top"><div class="deco-inner"><img src="./images/top-deco.png" alt="" class="deco-img"></div></div>
+        <div class="deco-wrapper bottom"><div class="deco-inner"><img src="./images/bottom-deco.png" alt="" class="deco-img"><img src="./images/animation.gif" alt="" class="screen-gif" id="screenGif"></div></div>
 
-        <img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/title.png" alt="标题" class="title-image" id="homeTitle">
+        <img src="./images/title.png" alt="标题" class="title-image" id="homeTitle">
         <div class="button-group" id="homeButtons">
             <div class="pixel-btn" id="start-btn">快端上来吧</div>
             <div class="pixel-btn" id="credits-btn">哪个神人做的</div>
@@ -284,15 +284,15 @@
         </div>
 
         <div class="transition-overlay" id="transitionOverlay">
-            <img class="transition-gif" id="transitionGif" src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/transition.gif" alt="过渡动画">
+            <img class="transition-gif" id="transitionGif" src="./images/transition.gif" alt="过渡动画">
         </div>
 
         <div class="result-modal custom-scroll" id="resultModal">
             <div class="result-left" id="resultLeft">
-                <img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/result-bg.png" alt="" class="result-left-bg">
-                <img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/boss.gif" alt="" class="result-gif" id="resultGif">
+                <img src="./images/result-bg.png" alt="" class="result-left-bg">
+                <img src="./images/boss.gif" alt="" class="result-gif" id="resultGif">
                 <div class="result-dialog-wrapper">
-                    <img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/dialog.png" alt="" class="result-dialog-img">
+                    <img src="./images/dialog.png" alt="" class="result-dialog-img">
                     <div class="dialog-text" id="dialogText">老板，该画饼了</div>
                 </div>
             </div>
@@ -313,7 +313,7 @@
 
     <div class="modal-overlay" id="creditsModal">
         <div class="modal-image-wrapper">
-            <img src="https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/credits-bg.png" alt="" class="modal-image">
+            <img src="./images/credits-bg.png" alt="" class="modal-image">
             <div class="modal-text custom-scroll">
                 本测试仅供娱乐，题目设置与结果纯属作者的个人偏见，不含任何科学依据、游戏开发方法论指导或投资建议，请勿对号入座。<br><br>
                 部分美术资源来自作者于ludumdare 55的作品《-Phonebook of Dragon-ヤクザ電話帳》<br>由@AegisFate与@Yunn共同绘制。<br><br>
@@ -549,7 +549,7 @@
                 this.el.quiz.modal.classList.remove('show');
                 this.el.trans.overlay.classList.add('show');
                 this.el.trans.gif.src = '';
-                this.el.trans.gif.src = 'https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/transition.gif';
+                this.el.trans.gif.src = './images/transition.gif';
                 if (this.state.transitionTimer) clearTimeout(this.state.transitionTimer);
                 this.state.transitionTimer = setTimeout(() => {
                     this.el.trans.overlay.classList.remove('show');
@@ -566,7 +566,7 @@
                 this.el.result.name.textContent = pers.name;
                 this.el.result.desc.textContent = pers.desc;
                 this.el.result.dialog.textContent = pers.phrase;
-                this.el.result.gif.src = `https://cdn.jsdelivr.net/gh/AegisFate/cbti@main/images/${topKey.toLowerCase()}.gif`;
+                this.el.result.gif.src = `./images/${topKey.toLowerCase()}.gif`;
 
                 const get = k => scores[k] || 0;
                 const rawDims = [
