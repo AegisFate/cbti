@@ -407,6 +407,10 @@
     </div>
 
     <script>
+        const SAMPLE_RATE = 0.2;
+        const isSampled = Math.random() < SAMPLE_RATE;
+        try { window.mixpanel && mixpanel.register && mixpanel.register({ option_sampled: isSampled }); } catch (e) {}
+
         const sanitizeForGA = (props) => {
             const out = {};
             for (const [k, v] of Object.entries(props || {})) {
@@ -415,9 +419,14 @@
             }
             return out;
         };
-        const track = (event, props) => {
-            try { window.mixpanel && mixpanel.track && mixpanel.track(event, props || {}); } catch (e) {}
-            try { typeof gtag === 'function' && gtag('event', event, sanitizeForGA(props)); } catch (e) {}
+        const track = (event, props, channels) => {
+            const ch = channels || ['mp', 'ga'];
+            if (ch.includes('mp')) {
+                try { window.mixpanel && mixpanel.track && mixpanel.track(event, props || {}); } catch (e) {}
+            }
+            if (ch.includes('ga')) {
+                try { typeof gtag === 'function' && gtag('event', event, sanitizeForGA(props)); } catch (e) {}
+            }
         };
 
         // ==================== 完整题库 (32题，已删除原第6题) ====================
@@ -642,6 +651,7 @@
 
             selectOption(idx) {
                 const prev = this.state.answers[this.state.currentIndex];
+                if (prev === idx) return;
                 const q = this.data.questions[this.state.currentIndex];
                 this.state.answers[this.state.currentIndex] = idx;
                 const items = this.el.quiz.options.querySelectorAll('.option-item');
@@ -658,7 +668,7 @@
                     is_change: prev !== null && prev !== idx,
                     previous_index: prev,
                     dwell_ms: Date.now() - (this.state.questionStartTs || Date.now()),
-                });
+                }, isSampled ? ['mp', 'ga'] : ['ga']);
             }
 
             handlePrev() {
